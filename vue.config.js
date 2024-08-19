@@ -4,7 +4,7 @@ module.exports = defineConfig({
   pages: {
     index: {
       entry: 'src/main.js',
-      title: 'TASK REPORTING',
+      title: 'MDO TASK REPORTING',
     },
   },
 })
