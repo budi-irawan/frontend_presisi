@@ -7,8 +7,10 @@
             <img
               src="../../../public/logo-presisi-login.jpg"
               alt="AdminLTE Logo"
-              class="brand-image"
+              class="brand-image mb-0"
+              width="200"
             />
+            <p class="font-italic text-secondary mb-0">Mining, Development & Operation</p>
           </div>
           <div class="card-body">
             <form>
@@ -48,13 +50,12 @@
                   @click="login()"
                 >
                   Login
-                  <div class="loading" v-if="loading">
                     <span
-                      class="spinner-border spinner-border-sm"
+                      class="loading spinner-border spinner-border-sm ml-3"
                       role="status"
                       aria-hidden="true"
+                      v-if="loading"
                     ></span>
-                  </div>
                 </button>
               </div>
             </form>
