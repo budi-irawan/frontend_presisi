@@ -59,7 +59,7 @@
 											<tr>
 												<th class="align-middle" scope="col" style="width: 5%">No</th>
 												<th class="align-middle" scope="col">Tanggal Pengisian</th>
-												<th class="align-middle" scope="col">Jam</th>
+												<!-- <th class="align-middle" scope="col">Jam</th> -->
 												<th class="align-middle" scope="col">Tanggal Sinkronisasi</th>
 												<th class="align-middle" scope="col">Unit</th>
 												<th class="align-middle" scope="col">Jenis Alat</th>
@@ -73,17 +73,12 @@
 												<th class="align-middle" scope="col"></th>
 											</tr>
 										</thead>
-										<!-- <div v-if="loading" class="row justify-content-center">
-											<div class="col">
-												<img :src="loadingGif" alt="Loading..." />
-											</div>
-										</div> -->
-											<!-- <Shimmer v-if="loading" /> -->
+										
 										<tbody>
 											<tr v-for="itemFuel in itemFuelRefill" :key="itemFuel.fuelRefillId">
 												<td>{{ itemFuel.no }}</td>
-												<td>{{ itemFuel.tanggal }}</td>
-												<td>{{ itemFuel.jam }}</td>
+												<td>{{ itemFuel.tanggalPengisian }}</td>
+												<!-- <td>{{ itemFuel.jam }}</td> -->
 												<td>{{ itemFuel.tanggalSinkronisasi }}</td>
 												<td>{{ itemFuel.namaMerk }}-{{ itemFuel.namaType }}-{{ itemFuel.nomorLambung }}</td>
 												<td>{{ itemFuel.namaJenisAlat }}</td>
@@ -108,7 +103,7 @@
 								</div>
 
 								<div class="row p-3">
-									<label for="agama" class="col-sm-3 col-form-label">Jumlah item per halaman</label>
+									<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 									<div class="col-sm-1">
 										<select class="form-control select2" @change="handleLimit($event)">
 											<option>Pilih</option>
@@ -166,7 +161,7 @@ export default {
 	},
 
 	mounted() {
-		this.getAllFuelRefill();
+		// this.getAllFuelRefill();
 	},
 
 	async created() {
@@ -179,6 +174,7 @@ export default {
 			try {
 				let dataToken = localStorage.getItem('token')
 				this.loading = true;
+				let timestamp = new Date().getTime()
 				const response = await axios.get(
 						`${ipBackend}/fuel-refill`, {
 						headers: {
@@ -189,14 +185,15 @@ export default {
 							limit: this.limit,
 							tanggalAwal: this.tanggalAwal,
 							tanggalAkhir: this.tanggalAkhir,
+							_ts: timestamp
 						}
 					}
 				);
 				let result = response.data.data;
 				for (let i = 0; i < result.length; i++) {
 					result[i].no = i + 1
-					result[i].tanggal = moment(result[i].tanggalPengisian).format("YYYY-MM-DD")
-					result[i].jam = moment(result[i].tanggalPengisian).format("HH:mm:ss")
+					result[i].tanggalPengisian = moment(result[i].tanggalPengisian).subtract(7, 'hour').format("YYYY-MM-DD HH:mm:ss")
+					// result[i].jam = moment(result[i].tanggalPengisian).format("HH:mm:ss")
 					result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss")
 				}
 				// this.itemFuelRefill = result

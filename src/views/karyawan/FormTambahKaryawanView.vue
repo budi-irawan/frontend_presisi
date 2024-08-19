@@ -506,7 +506,7 @@ export default {
 						position: 'topRight', 
 						timeout: 2000 
 					});
-					this.$router.push("/karyawan");
+					this.$router.push("/manpower");
 				} else {
 					iziToast.info({
                         title: 'Informasi',

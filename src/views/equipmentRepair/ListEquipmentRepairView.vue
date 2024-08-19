@@ -132,7 +132,7 @@
                                 </div>
 
                                 <div class="row p-3">
-									<label for="agama" class="col-sm-3 col-form-label">Jumlah item per halaman</label>
+									<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 									<div class="col-sm-1">
 										<select class="form-control select2" @change="handleLimit($event)">
 											<option>Pilih</option>
@@ -191,7 +191,7 @@ export default {
     },
 
     mounted() {
-        this.getAllEquipmentRepair();
+        // this.getAllEquipmentRepair();
     },
 
     created() {
@@ -202,6 +202,7 @@ export default {
         async getAllEquipmentRepair() {
             let dataToken = localStorage.getItem("token");
             try {
+                let timestamp = new Date().getTime()
                 const dataEquipmentRepair = await axios.get(
                     `${ipBackend}/equipment-repair`,
                     {
@@ -213,6 +214,7 @@ export default {
 							limit: this.limit,
                             tanggalAwal: this.tanggalAwal,
                             tanggalAkhir: this.tanggalAkhir,
+							_ts: timestamp
 						}
                     }
                 );
@@ -223,8 +225,8 @@ export default {
                         "YYYY-MM-DD"
                     );
                     result[i].jam = moment(result[i].tanggalMasuk).format("HH:mm:ss");
-                    result[i].tanggalMasuk = moment(result[i].tanggalMasuk).format("YYYY-MM-DD HH:mm:ss");
-                    result[i].tanggalSelesai = moment(result[i].tanggalSelesai).format("YYYY-MM-DD HH:mm:ss");
+                    result[i].tanggalMasuk = moment(result[i].tanggalMasuk).subtract(7, 'hour').format("YYYY-MM-DD HH:mm:ss");
+                    result[i].tanggalSelesai = moment(result[i].tanggalSelesai).subtract(7, 'hour').format("YYYY-MM-DD HH:mm:ss");
                     result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss");
                 }
                 this.itemEquipmentRepair = result;

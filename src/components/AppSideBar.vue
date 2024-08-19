@@ -27,7 +27,7 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/karyawan" class="nav-link">
+                        <router-link to="/manpower" class="nav-link">
                             <i class="nav-icon fas fa-solid fa-user-tie"></i>
                             <p>Manpower</p>
                         </router-link>

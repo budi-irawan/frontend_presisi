@@ -186,31 +186,31 @@ const routes = [
 		}
 	},
 	{
-		path: '/karyawan',
-		name: 'karyawan',
+		path: '/manpower',
+		name: 'manpower',
 		component: ListKaryawanView,
 		meta: {
 			requiresAuth: true
 		}
 	},
 	{
-		path: '/karyawan/tambah',
-		name: 'tambah-karyawan',
+		path: '/manpower/tambah',
+		name: 'tambah-manpower',
 		component: FormTambahKaryawanView,
 		meta: {
 			requiresAuth: true
 		}
 	},
 	{
-		path: '/karyawan/edit',
-		name: 'edit-karyawan',
+		path: '/manpower/edit',
+		name: 'edit-manpower',
 		component: FormEditKaryawanView,
 		meta: {
 			requiresAuth: true
 		}
 	},
 	{
-		path: '/karyawan/profil',
+		path: '/manpower/profil',
 		name: 'profil',
 		component: DetailKaryawanView,
 		meta: {

@@ -6,7 +6,7 @@
 			<router-view />
 			<section class="content">
 				<div class="container-fluid pt-3">
-					<div class="row mt-3 mb-4">
+					<div class="row mb-4">
 						<div class="col">
 							<div class="card shadow-lg">
 								<div class="card-header">
@@ -480,7 +480,7 @@ export default {
 					position: 'topRight', 
 					timeout: 2000 
 				});
-				this.$router.push("/karyawan");
+				this.$router.push("/manpower");
 			} catch (error) {
 				console.log(error);
 			}

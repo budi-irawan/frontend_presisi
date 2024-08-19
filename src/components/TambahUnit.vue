@@ -347,7 +347,7 @@
 			</div>
 		</form>
 		<div class="table-responsive mt-2">
-			<table class="table table-striped table-hover table-bordered">
+			<table class="table table-striped table-hover table-bordered" v-if="!loading">
 				<thead>
 					<tr>
 						<th class="align-middle" scope="col">No</th>
@@ -366,8 +366,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="du in dataUnit" :key="du.unitId">
-						<td>{{ du.no }}</td>
+					<tr v-for="(du, index) in dataUnit" :key="du.unitId">
+						<td>{{ (page - 1) * limit + index + 1}}</td>
 						<td>{{ du.nomorLambung }}</td>
 						<td>{{ du.namaMerk }}</td>
 						<td>{{ du.namaType }}</td>
@@ -401,10 +401,14 @@
 					</tr>
 				</tbody>
 			</table>
-			
+			<div v-else class="row muser">
+				<div class="col text-center">
+					<img :src="loadingGif" />
+				</div>
+			</div>
 		</div>
 		
-		<div class="row">
+		<div class="row p-3">
 			<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 			<div class="col-sm-1">
 				<select class="form-control select2" @change="handleLimit($event)">
@@ -415,9 +419,9 @@
 			</div>
 			<div class="col">
 				<ul class="pagination pagination-sm m-0 float-right">
-					<li class="page-item"><button @click="changePages(page - 1)" :disabled="page <= 1" class="page-link">Sebelumnya</button></li>
+					<li class="page-item"><button @click="changePages(page - 1)" :disabled="page <= 1 || loading" class="page-link">Sebelumnya</button></li>
 					<li class="page-item"><button v-for="n in totalPages" :key="n" @click="changePages(n)" :class=" 'page-link' ">{{ n }}</button></li>
-					<li class="page-item"><button @click="changePages(page + 1)" :disabled="page >= totalPages" class="page-link">Selanjutnya</button></li>
+					<li class="page-item"><button @click="changePages(page + 1)" :disabled="page >= totalPages || loading" class="page-link">Selanjutnya</button></li>
             	</ul>
 			</div>
 		</div>
@@ -463,6 +467,8 @@ export default {
 			page: 1,
 			limit: 10,
 			totalPages: 1,
+			loading: true,
+			loadingGif: require('@/assets/rolling.gif'),
 		};
 	},
 
@@ -480,19 +486,21 @@ export default {
 	},
 
 	mounted() {
-		this.getAllJenisAlat();
-		this.getAllUnit();
-		this.getAllType();
-		this.getAllMerk();
-		this.getAllLokasi();
+		// this.getAllJenisAlat();
+		// this.getAllUnit();
+		// this.getAllType();
+		// this.getAllMerk();
+		// this.getAllLokasi();
 	},
 
-	created() {
+	async created() {
 		this.getAllJenisAlat();
-		this.getAllUnit();
 		this.getAllType();
 		this.getAllMerk();
 		this.getAllLokasi();
+		this.getAllUnit();
+		// this.dataUnit = await this.getAllUnit();
+		// this.loading = false
 	},
 
 	methods: {
@@ -635,8 +643,10 @@ export default {
 		},
 
 		async getAllUnit() {
+			this.loading = true;
 			let dataToken = localStorage.getItem('token')
 			try {
+				let timestamp = new Date().getTime()
 				const response = await axios.get(
                         `${ipBackend}/unit`, {
                         headers: {
@@ -645,17 +655,23 @@ export default {
 						params: {
 							page: this.page,
 							limit: this.limit,
+							_ts: timestamp
 						}
                     }
 				);
+				
 				let result = response.data.data;
 				for (let i = 0; i < result.length; i++) {
 					result[i].no = i + 1
 				}
 				this.dataUnit = result
 				this.totalPages = response.data.totalPages
+				this.loading = false 
+				// return result;
 			} catch (error) {
 				console.log(error);
+			} finally {
+				this.loading = false;
 			}
 		},
 
