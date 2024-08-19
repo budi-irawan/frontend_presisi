@@ -1,32 +1,79 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div class="wrapper">
+    <router-view />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.tombol {
   text-align: center;
-  color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+.btn-sm {
+  margin: 2px;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+thead.header-tabel {
+  background-color: #343739;
+  color: white;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+thead th {
+  text-align: center;
 }
+
+button.page-link {
+  display: inline-block;
+}
+
+button.page-link {
+  font-size: 20px;
+  color: #29b3ed;
+  font-weight: 500;
+}
+
+div.load {
+  justify-content: center;
+  justify-items: center;
+  margin: 0 auto;
+}
+
+/* div.tab-judul {
+  text-align: center;
+  color: white;
+  background-color: #262b32;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+} */
+
+.tbl-fixed {
+  overflow-x: scroll;
+}
+
+table {
+  min-width: max-content;
+}
+
+ul > li {
+  padding: 0;
+  margin: 0;
+}
+
+div.main-sidebar.sidebar-menu {
+  background-color: black;
+}
+
+table th {
+  padding: 25px;
+}
+table td ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: square;
+  list-style-position: inside; /* Removes default bullet points */
+}
+.table-wrap {
+      table-layout: auto !important; /* Ensures automatic table layout */
+      word-wrap: break-word; /* Allows text to wrap within cells */
+    }
 </style>
