@@ -192,7 +192,7 @@ export default {
 				let result = response.data.data;
 				for (let i = 0; i < result.length; i++) {
 					result[i].no = i + 1
-					result[i].tanggalPengisian = moment(result[i].tanggalPengisian).subtract(7, 'hour').format("YYYY-MM-DD HH:mm:ss")
+					result[i].tanggalPengisian = moment(result[i].tanggalPengisian).format("YYYY-MM-DD HH:mm:ss")
 					// result[i].jam = moment(result[i].tanggalPengisian).format("HH:mm:ss")
 					result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss")
 				}

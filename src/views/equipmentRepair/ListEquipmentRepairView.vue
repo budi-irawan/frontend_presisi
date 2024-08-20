@@ -225,8 +225,8 @@ export default {
                         "YYYY-MM-DD"
                     );
                     result[i].jam = moment(result[i].tanggalMasuk).format("HH:mm:ss");
-                    result[i].tanggalMasuk = moment(result[i].tanggalMasuk).subtract(7, 'hour').format("YYYY-MM-DD HH:mm:ss");
-                    result[i].tanggalSelesai = moment(result[i].tanggalSelesai).subtract(7, 'hour').format("YYYY-MM-DD HH:mm:ss");
+                    result[i].tanggalMasuk = moment(result[i].tanggalMasuk).format("YYYY-MM-DD HH:mm:ss");
+                    result[i].tanggalSelesai = moment(result[i].tanggalSelesai).format("YYYY-MM-DD HH:mm:ss");
                     result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss");
                 }
                 this.itemEquipmentRepair = result;

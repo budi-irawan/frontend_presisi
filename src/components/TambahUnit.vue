@@ -149,7 +149,7 @@
 							</div>
 						</div>
 
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
 							<label for="statusUnit" class="col-sm-3 col-form-label">Status Unit<span class="text-danger"> *</span></label>
 							<div class="col-sm-6">
 								<select class="form-control select2" style="width: 100%;" v-model.trim="$v.itemUnit.statusUnit.$model" :class="{
@@ -163,7 +163,7 @@
 									Status Unit harus diisi
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="row">
 							<div class="col">
 								<button type="button" class="btn btn-primary mr-2" @click="saveUnit">
@@ -314,7 +314,7 @@
 							</div>
 						</div>
 
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
 							<label for="statusUnit" class="col-sm-3 col-form-label">Status Unit<span class="text-danger"> *</span></label>
 							<div class="col-sm-6">
 								<select class="form-control select2" style="width: 100%;" v-model.trim="$v.itemUnit.statusUnit.$model" :class="{
@@ -328,7 +328,7 @@
 									Status Unit harus diisi
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
 						<div class="row">
 							<div class="col">
@@ -361,7 +361,7 @@
 						<th class="align-middle" scope="col">Lokasi</th>
 						<th class="align-middle" scope="col">Proyek</th>
 						<th class="align-middle" scope="col">Tahun Alat</th>
-						<th class="align-middle" scope="col">Status Unit</th>
+						<!-- <th class="align-middle" scope="col">Status Unit</th> -->
 						<th class="align-middle" scope="col"></th>
 					</tr>
 				</thead>
@@ -378,10 +378,10 @@
 						<td>{{ du.namaLokasi }}</td>
 						<td>{{ du.proyek }}</td>
 						<td>{{ du.tahunAlat }}</td>
-						<td>
+						<!-- <td>
 							<span v-if="du.statusUnit == 'RFU'" class="badge bg-success">{{ du.statusUnit }}</span>
 							<span v-if="du.statusUnit == 'BD'" class="badge bg-danger">{{ du.statusUnit }}</span>
-						</td>
+						</td> -->
 						<td>
 							<div @click="toggleComponentEditUnit(du.unitId, du.nomorLambung, du.statusUnit, du.jenisAlatId, du.typeId, du.merkId, du.lokasiId, du.proyek, du.serialNumber, du.nomorPolisi, du.equipment, du.tahunAlat)" class="action-icon mr-2">
 								<i class="fas fa-solid fa-pen" style="color: #ffb703"></i>
@@ -446,7 +446,7 @@ export default {
 			itemUnit: {
 				unitId: '',
 				nomorLambung: '',
-				statusUnit: '',
+				// statusUnit: '',
 				jenisAlatId: '',
 				typeId: '',
 				merkId: '',
@@ -475,7 +475,7 @@ export default {
 	validations: {
 		itemUnit: {
 			nomorLambung: { required },
-			statusUnit: { required },
+			// statusUnit: { required },
 			jenisAlatId: { required },
 			typeId: { required },
 			merkId: { required },
