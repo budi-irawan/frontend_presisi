@@ -53,9 +53,9 @@
                                                     <div class="row mb-1" style="font-weight: 600">
                                                         Lokasi
                                                     </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
+                                                    <!-- <div class="row mb-1" style="font-weight: 600">
                                                         Status Unit
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <div class="col-md-6 col-sm-4">
                                                     <div class="row mb-1">
@@ -82,10 +82,10 @@
                                                     <div class="row mb-1">
                                                         <b>: {{ itemUnit.namaLokasi }}</b>
                                                     </div>
-                                                    <div class="row mb-1">
+                                                    <!-- <div class="row mb-1">
                                                         <span v-if="itemUnit.statusUnit == 'RFU'" class="badge bg-success"><b> {{ itemUnit.statusUnit }}</b></span>
                                                         <span v-else class="badge bg-danger"><b> {{ itemUnit.statusUnit }}</b></span>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                     </div>
                                     <div class="row mt-3">
