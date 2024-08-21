@@ -41,7 +41,7 @@
 										}">
 										<option v-for="dm in dataManpower" :key="dm.karyawanId"
 											:value="dm.karyawanId">
-											{{ dm.namaManpower }}
+											{{ dm.namaManpower }} - {{ dm.namaJabatan }} - {{ dm.namaGradeKompetensi }}
 										</option>
 									</select>
 									<div v-if="!$v.itemUser.karyawanId.required"

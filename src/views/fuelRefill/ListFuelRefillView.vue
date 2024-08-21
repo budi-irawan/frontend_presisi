@@ -75,8 +75,8 @@
 										</thead>
 										
 										<tbody>
-											<tr v-for="itemFuel in itemFuelRefill" :key="itemFuel.fuelRefillId">
-												<td>{{ itemFuel.no }}</td>
+											<tr v-for="(itemFuel, index) in itemFuelRefill" :key="itemFuel.fuelRefillId">
+												<td>{{ (page - 1) * limit + index + 1 }}</td>
 												<td>{{ itemFuel.tanggalPengisian }}</td>
 												<!-- <td>{{ itemFuel.jam }}</td> -->
 												<td>{{ itemFuel.tanggalSinkronisasi }}</td>

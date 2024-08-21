@@ -8,9 +8,13 @@
 				<div class="container-fluid pt-3">
 					<div class="row">
 						<div class="col">
-							<button type="button" class="btn btn-info" @click="toggleComponentTambahUser">
+							<button v-if="!showComponentTambahUser" type="button" class="btn btn-info" @click="toggleComponentTambahUser">
 								<i class="fas fa-solid fa-plus-circle"></i>
 								Tambah Data User
+							</button>
+							<button v-else type="button" class="btn btn-secondary" @click="toggleComponentTambahUser">
+								<i class="fas fa-undo"></i>
+								Tutup
 							</button>
 						</div>
 					</div>
@@ -70,7 +74,7 @@
 									</div>
 								</div>
 								<div class="card-body table-responsive p-0">
-									<table class="table table-hover table-striped text-nowrap">
+									<table class="table table-hover table-striped text-nowrap" v-if="!loading">
 										<thead>
 											<tr>
 												<th class="align-middle" scope="col" style="width: 5%">No</th>
@@ -82,8 +86,8 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr v-for="du in dataUser" :key="du.userId">
-												<td>{{ du.no }}</td>
+											<tr v-for="(du, index) in dataUser" :key="du.userId">
+												<td>{{ (page - 1) * limit + index + 1 }}</td>
 												<td>{{ du.username }}</td>
 												<!-- <td>{{ du.role }}</td> -->
 												<td>{{ du.namaManpower }}</td>
@@ -99,6 +103,30 @@
 											</tr>
 										</tbody>
 									</table>
+
+									<div v-else class="row muser">
+										<div class="col text-center">
+											<img :src="loadingGif" />
+										</div>
+									</div>
+								</div>
+
+								<div class="row p-3">
+									<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
+									<div class="col-sm-1">
+										<select class="form-control select2" @change="handleLimit($event)">
+											<option>Pilih</option>
+											<option value="5">5</option>
+											<option value="10">10</option>
+										</select>
+									</div>
+									<div class="col">
+										<ul class="pagination pagination-sm m-0 float-right">
+											<li class="page-item"><button @click="changePages(page - 1)" :disabled="page <= 1" class="page-link">Sebelumnya</button></li>
+											<li class="page-item"><button v-for="n in totalPages" :key="n" @click="changePages(n)" :class=" 'page-link' ">{{ n }}</button></li>
+											<li class="page-item"><button @click="changePages(page + 1)" :disabled="page >= totalPages" class="page-link">Selanjutnya</button></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -128,9 +156,14 @@ export default {
 		return {
 			selectedRole: '',
 			showComponentTambahUser: false,
+			isClickTambahUser: false,
 			showComponentEditUser: false,
 			isManpower: false,
 			isFuelman: false,
+			loading: true,
+			loadingGif: require('@/assets/rolling.gif'),page: 1,
+			limit: 10,
+			totalPages: 1,
 			itemUser: {
 				username: '',
 				password: '',
@@ -179,6 +212,19 @@ export default {
 	methods: {
 		validationStatus: function (validation) {
 			return typeof validation != "undefined" ? validation.$error : false;
+		},
+
+		changePages(newPage) {
+			if (newPage >=1 && newPage <= this.totalPages) {
+				this.page = newPage
+				this.getAllUser();
+			}
+		},
+
+		handleLimit(event) {
+			this.limit = parseInt(event.target.value)
+			
+			this.getAllUser();
 		},
 
 		async getKaryawanById() {
@@ -284,11 +330,18 @@ export default {
 
 		async getAllUser() {
 			let dataToken = localStorage.getItem('token')
+			this.loading = true;
+			let timestamp = new Date().getTime()
 			try {
 				const response = await axios.get(
-					`${ipBackend}/user/list`, {
+					`${ipBackend}/user`, {
 					headers: {
 						token: dataToken
+					},
+					params: {
+						page: this.page,
+						limit: this.limit,
+						_ts: timestamp
 					}
 				}
 				);
@@ -297,8 +350,12 @@ export default {
 					result[i].no = i + 1
 				}
 				this.dataUser = result
+				this.totalPages = response.data.totalPages
+				this.loading = false;
 			} catch (error) {
 				console.log(error);
+			}	finally {
+				this.loading = false;
 			}
 		},
 
@@ -381,6 +438,7 @@ export default {
 
 		toggleComponentTambahUser() {
 			this.showComponentTambahUser = !this.showComponentTambahUser;
+			this.isClickTambahUser = true;
 		},
 
 		tutupFormUser() {

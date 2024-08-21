@@ -53,7 +53,7 @@
                             <div class="card shadow-lg">
                                 
                                 <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover table-striped">
+                                    <table class="table table-hover table-striped" v-if="!loading">
                                         <thead>
                                             <tr>
                                                 <th class="align-middle" scope="col">
@@ -80,14 +80,14 @@
                                                 <th class="align-middle" scope="col"></th>
                                             </tr>
                                         </thead>
-                                        <div v-if="loading" class="row justify-content-center">
+                                        <!-- <div v-if="loading" class="row justify-content-center">
 											<div class="col">
 												<img :src="loadingGif" alt="Loading..." />
 											</div>
-										</div>
-                                        <tbody v-else>
-                                            <tr v-for="item in itemEquipmentRepair" :key="item.equipmentRepairId">
-                                                <td>{{ item.no }}</td>
+										</div> -->
+                                        <tbody>
+                                            <tr v-for="(item, index) in itemEquipmentRepair" :key="item.equipmentRepairId">
+                                                <td>{{ (page - 1) * limit + index + 1 }}</td>
                                                 <td>{{ item.tanggalMasuk }}</td>
                                                 <!-- <td>{{ item.jam }}</td> -->
                                                 <td>{{ item.tanggalSelesai }}</td>
@@ -129,6 +129,12 @@
                                             </tr>
                                         </tbody>
                                     </table>
+
+                                    <div v-else class="row muser">
+										<div class="col text-center">
+											<img :src="loadingGif" />
+										</div>
+									</div>
                                 </div>
 
                                 <div class="row p-3">
@@ -174,7 +180,7 @@ export default {
         return {
             tanggalAwal: null,
             tanggalAkhir: null,
-            loading: false,
+            loading: true,
             itemEquipmentRepair: [],
             path: ipBackend,
             page: 1,
@@ -201,6 +207,7 @@ export default {
     methods: {
         async getAllEquipmentRepair() {
             let dataToken = localStorage.getItem("token");
+            this.loading = true;
             try {
                 let timestamp = new Date().getTime()
                 const dataEquipmentRepair = await axios.get(
@@ -234,6 +241,8 @@ export default {
 				this.loading = false;
             } catch (error) {
                 console.log(error);
+            } finally {
+                this.loading = false;
             }
         },
 

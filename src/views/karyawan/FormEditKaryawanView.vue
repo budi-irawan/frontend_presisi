@@ -127,7 +127,7 @@
 															}">
 															<option selected="selected">Islam</option>
 															<option>Katolik</option>
-															<option>Protestan</option>
+															<option>Kristen</option>
 															<option>Hindu</option>
 															<option>Budha</option>
 															<option>Konghuchu</option>
@@ -214,7 +214,8 @@
 														<select class="form-control select2" style="width: 100%;" v-model.trim="$v.itemKaryawan.statusPernikahan.$model" :class="{
 																'is-invalid': validationStatus($v.itemKaryawan.statusPernikahan),
 															}">
-															<option selected="selected">Menikah</option>
+															<option selected="selected">-</option>
+															<option>Menikah</option>
 															<option>Belum Menikah</option>
 														</select>
 														<div v-if="!$v.itemKaryawan.statusPernikahan.required"
