@@ -1,6 +1,6 @@
-FROM node:18-alpine
+FROM node:18-alpine as build-stage
 
-WORKDIR /home/node/app2
+WORKDIR /home/vue/app
 
 COPY package*.json ./
 
@@ -10,9 +10,11 @@ COPY . .
 
 RUN npm run build --force
 
-FROM nginx
+FROM nginx:stable-alpine as production-stage
 
-COPY --from=build /home/node/app2/dist /usr/share/nginx/html
+COPY - from=build-stage /home/vue/app/dist /usr/share/nginx/html
+
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
