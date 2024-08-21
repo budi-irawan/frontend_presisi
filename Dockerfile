@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 # Set working directory
-WORKDIR /app
+WORKDIR /home/node/app2
 
 # Salin file package.json dan package-lock.json
 COPY package*.json ./
@@ -20,7 +20,7 @@ RUN npm run build --force
 FROM nginx:alpine
 
 # Salin build output ke direktori yang dilayani Nginx
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /home/node/app2/dist /usr/share/nginx/html
 
 # Expose port yang digunakan oleh Nginx
 EXPOSE 80
