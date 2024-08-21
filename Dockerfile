@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build --force
 
-FROM nginx:alpine
+FROM nginx
 
 COPY --from=build /home/node/app2/dist /usr/share/nginx/html
 
