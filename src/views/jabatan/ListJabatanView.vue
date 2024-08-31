@@ -9,7 +9,7 @@
 					
 					<div class="row mb-4">
 						<div class="col">
-							<div class="card shadow-lg">
+							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">
 									<i class="fas fa-solid fa-street-view mr-3"></i>

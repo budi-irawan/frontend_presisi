@@ -6,7 +6,7 @@
             <router-view />
             <section class="content">
                 <div class="container-fluid pt-3">
-                    <div class="row mb-4">
+                    <div class="row">
                         <div class="col">
                             <div class="card shadow-lg">
                                 <div class="card-header">
@@ -16,77 +16,146 @@
 									</h3>
 								</div>
                                 <div class="card-body">
-                                    <div class="row mt-2">
-                                        <div class="col-md-2">
-                                            <img :src="`${gambarQR}`" class="shadow-lg" width="120" />
-                                            <div class="row mt-2">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+                                            <div class="row">
                                                 <div class="col">
-                                                    <button type="button" class="btn btn-sm btn-success" @click="generatePDF">
+                                                    <img :src="`${gambarQR}`" class="shadow-sm" width="100%" />
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2 mb-2">
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-sm btn-block btn-success" @click="generatePDF">
                                                         <i class="fas fa-solid fa-qrcode" style="color: white"></i>
                                                         Generate QR Code
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2 ml-2">
-                                                    <div class="row mb-1" style="font-weight: 600">
+                                        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Nomor Lambung : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.nomorLambung }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Jenis Alat : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.namaJenisAlat }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Merk : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.namaMerk }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Type : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.namaType }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Nomor Polisi : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.nomorPolisi }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Serial Number : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.serialNumber }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Equipment : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.equipment }}</b>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                                    Lokasi : 
+                                                </div>
+                                                <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                                                    <b>{{ itemUnit.namaLokasi }}</b>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row">
+                                                Serial Number : <b class="text-wrap">{{ itemUnit.serialNumber }}</b>
+                                            </div> -->
+                                            <!-- <div class="row">
+                                                <b>{{ itemUnit.nomorLambung }}</b>
+                                            </div> -->
+                                        </div>
+                                        <!-- <div class="col-md-2 ml-2">
+                                            <div class="row mb-1" style="font-weight: 600">
                                                         Nomor Lambung
-                                                    </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
-                                                        Jenis Alat
-                                                    </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
-                                                        Merk
-                                                    </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
-                                                        Type
-                                                    </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
-                                                        Nomor Polisi
-                                                    </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
-                                                        Serial Number
-                                                    </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
-                                                        Equipment
-                                                    </div>
-                                                    <div class="row mb-1" style="font-weight: 600">
-                                                        Lokasi
-                                                    </div>
-                                                    <!-- <div class="row mb-1" style="font-weight: 600">
-                                                        Status Unit
-                                                    </div> -->
-                                                </div>
-                                                <div class="col-md-6 col-sm-4">
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.nomorLambung }}</b>
-                                                    </div>
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.namaJenisAlat }}</b>
-                                                    </div>
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.namaMerk }}</b>
-                                                    </div>
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.namaType }}</b>
-                                                    </div>
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.nomorPolisi }}</b>
-                                                    </div>
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.serialNumber }}</b>
-                                                    </div>
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.equipment }}</b>
-                                                    </div>
-                                                    <div class="row mb-1">
-                                                        <b>: {{ itemUnit.namaLokasi }}</b>
-                                                    </div>
-                                                    <!-- <div class="row mb-1">
-                                                        <span v-if="itemUnit.statusUnit == 'RFU'" class="badge bg-success"><b> {{ itemUnit.statusUnit }}</b></span>
-                                                        <span v-else class="badge bg-danger"><b> {{ itemUnit.statusUnit }}</b></span>
-                                                    </div> -->
-                                                </div>
+                                            </div>
+                                            <div class="row mb-1" style="font-weight: 600">
+                                                Jenis Alat
+                                            </div>
+                                            <div class="row mb-1" style="font-weight: 600">
+                                                Merk
+                                            </div>
+                                            <div class="row mb-1" style="font-weight: 600">
+                                                Type
+                                            </div>
+                                            <div class="row mb-1" style="font-weight: 600">
+                                                Nomor Polisi
+                                            </div>
+                                            <div class="row mb-1" style="font-weight: 600">
+                                                Serial Number
+                                            </div>
+                                            <div class="row mb-1" style="font-weight: 600">
+                                                Equipment
+                                            </div>
+                                            <div class="row mb-1" style="font-weight: 600">
+                                                Lokasi
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-4">
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.nomorLambung }}</b>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.namaJenisAlat }}</b>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.namaMerk }}</b>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.namaType }}</b>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.nomorPolisi }}</b>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.serialNumber }}</b>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.equipment }}</b>
+                                            </div>
+                                            <div class="row mb-1">
+                                                <b>: {{ itemUnit.namaLokasi }}</b>
+                                            </div>
+                                        </div> -->
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col">

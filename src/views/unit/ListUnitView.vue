@@ -7,9 +7,9 @@
 			<section class="content">
 				<div class="container-fluid pt-3">
 					
-					<div class="row mb-4">
+					<div class="row">
 						<div class="col">
-							<div class="card shadow-lg">
+							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">
 									<i class="fas fa-solid fa-layer-group mr-3"></i>
@@ -50,6 +50,12 @@
 														role="tab" aria-controls="custom-content-below-lokasi"
 														aria-selected="false" style="font-weight: 600">Lokasi</a>
 												</li>
+												<li class="nav-item">
+													<a class="nav-link text-secondary" id="custom-content-below-proyek-tab"
+														data-toggle="pill" href="#custom-content-below-proyek"
+														role="tab" aria-controls="custom-content-below-proyek"
+														aria-selected="false" style="font-weight: 600">Proyek</a>
+												</li>
 											</ul>
 											<div class="tab-content" id="custom-content-below-tabContent">
 												<div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
@@ -66,6 +72,9 @@
 												</div>
 												<div class="tab-pane fade" id="custom-content-below-lokasi" role="tabpanel" aria-labelledby="custom-content-below-lokasi-tab">
 													<tambah-lokasi />
+												</div>
+												<div class="tab-pane fade" id="custom-content-below-proyek" role="tabpanel" aria-labelledby="custom-content-below-proyek-tab">
+													<tambah-proyek />
 												</div>
 											</div>
 										</div>
@@ -89,8 +98,9 @@ import TambahJenisAlat from '@/components/TambahJenisAlat.vue';
 import TambahType from '@/components/TambahType.vue';
 import TambahMerk from '@/components/TambahMerk.vue';
 import TambahLokasi from '@/components/TambahLokasi.vue';
+import TambahProyek from '@/components/TambahProyek.vue';
 export default {
-  components: { TambahUnit, TambahJenisAlat, TambahType, TambahMerk, TambahLokasi },
+  components: { TambahUnit, TambahJenisAlat, TambahType, TambahMerk, TambahLokasi, TambahProyek },
 	name: "ListUnitView",
 	data() {
 		return {

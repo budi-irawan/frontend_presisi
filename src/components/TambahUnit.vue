@@ -1,21 +1,21 @@
 <template>
     <div>
 		<form>
-			<div class="row mt-2">
-				<div class="col">
-					<button type="button" class="btn btn-info" @click="toggleComponentTambahUnit">
+			<div class="row mt-3">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 d-sm-block mb-1">
+					<button type="button" class="btn btn-info btn-block" @click="toggleComponentTambahUnit">
 						<i class="fas fa-solid fa-plus-circle"></i>
 						Tambah Data Unit
 					</button>
-					<button type="button" @click="generatePDF" class="btn btn-success ml-2">
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-2 d-sm-block mb-1">
+					<button type="button" @click="generatePDF" class="btn btn-success btn-block">
 						<i class="fas fa-solid fa-qrcode"></i>
 						Generate QR Code
 					</button>
 				</div>
-				<div class="col">
-					
-				</div>
 			</div>
+
 			<div v-if="showComponentTambahUnit">
 				<div class="row mt-3 mb-3">
 					<div class="col">
@@ -376,7 +376,7 @@
 						<td>{{ du.nomorPolisi }}</td>
 						<td>{{ du.equipment }}</td>
 						<td>{{ du.namaLokasi }}</td>
-						<td>{{ du.proyek }}</td>
+						<td>{{ du.namaProyek }}</td>
 						<td>{{ du.tahunAlat }}</td>
 						<!-- <td>
 							<span v-if="du.statusUnit == 'RFU'" class="badge bg-success">{{ du.statusUnit }}</span>
@@ -408,20 +408,29 @@
 			</div>
 		</div>
 		
-		<div class="row p-3">
-			<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
-			<div class="col-sm-1">
+		<div class="row mt-2">
+			<label for="pagination" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
+			<div class="col-sm-1 mb-2">
 				<select class="form-control select2" @change="handleLimit($event)">
 					<option>Pilih</option>
-					<option value="5">5</option>
 					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
 				</select>
 			</div>
+		</div>
+		<div class="row mt-2">
 			<div class="col">
 				<ul class="pagination pagination-sm m-0 float-right">
-					<li class="page-item"><button @click="changePages(page - 1)" :disabled="page <= 1 || loading" class="page-link">Sebelumnya</button></li>
-					<li class="page-item"><button v-for="n in totalPages" :key="n" @click="changePages(n)" :class=" 'page-link' ">{{ n }}</button></li>
-					<li class="page-item"><button @click="changePages(page + 1)" :disabled="page >= totalPages || loading" class="page-link">Selanjutnya</button></li>
+					<li class="page-item">
+						<button @click="changePages(page - 1)" :disabled="page <= 1 || loading" class="page-link">Sebelumnya</button>
+					</li>
+					<li class="page-item">
+						<button v-for="n in totalPages" :key="n" @click="changePages(n)" class="page-link btn-primary">{{ n }}</button>
+					</li>
+					<li class="page-item">
+						<button @click="changePages(page + 1)" :disabled="page >= totalPages || loading" class="page-link">Selanjutnya</button>
+					</li>
             	</ul>
 			</div>
 		</div>

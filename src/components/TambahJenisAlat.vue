@@ -2,8 +2,8 @@
     <div>
         <form>
 			<div class="row mt-2">
-				<div class="col">
-					<button type="button" class="btn btn-info" @click="toggleComponentTambahJenisAlat">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 d-sm-block mb-1">
+					<button type="button" class="btn btn-info btn-block" @click="toggleComponentTambahJenisAlat">
 						<i class="fas fa-solid fa-plus-circle"></i>
 						Tambah Data Jenis Alat
 					</button>

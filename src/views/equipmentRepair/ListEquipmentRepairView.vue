@@ -8,7 +8,7 @@
                 <div class="container-fluid pt-3">
                     <div class="row">
                         <div class="col">
-                            <div class="card shadow-lg">
+                            <div class="card">
                                 <div class="card-header">
 									<h3 class="card-title">
 									<i class="fas fa-solid fa-wrench mr-3"></i>
@@ -50,8 +50,7 @@
                                 </div>
                             </div>
 
-                            <div class="card shadow-lg">
-                                
+                            <div class="card">
                                 <div class="card-body table-responsive p-0">
                                     <table class="table table-hover table-striped" v-if="!loading">
                                         <thead>
@@ -77,7 +76,6 @@
                                                 <th class="align-middle" scope="col">Mekanik</th>
                                                 <!-- <th class="align-middle" scope="col">Komponen</th>
                                                 <th class="align-middle" scope="col">Pelumas</th> -->
-                                                <th class="align-middle" scope="col"></th>
                                             </tr>
                                         </thead>
                                         <!-- <div v-if="loading" class="row justify-content-center">
@@ -125,7 +123,6 @@
                                                         </li>
                                                     </ul>
                                                 </td>
-                                                <td class="tombol"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -137,23 +134,26 @@
 									</div>
                                 </div>
 
-                                <div class="row p-3">
+                                <div class="row p-2">
 									<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 									<div class="col-sm-1">
 										<select class="form-control select2" @change="handleLimit($event)">
 											<option>Pilih</option>
-											<option value="5">5</option>
 											<option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
 										</select>
 									</div>
-									<div class="col">
+								</div>
+                                <div class="row p-2">
+                                    <div class="col">
 										<ul class="pagination pagination-sm m-0 float-right">
 											<li class="page-item"><button @click="changePages(page - 1)" :disabled="page <= 1" class="page-link">Sebelumnya</button></li>
 											<li class="page-item"><button v-for="n in totalPages" :key="n" @click="changePages(n)" :class=" 'page-link' ">{{ n }}</button></li>
 											<li class="page-item"><button @click="changePages(page + 1)" :disabled="page >= totalPages" class="page-link">Selanjutnya</button></li>
 										</ul>
 									</div>
-								</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -226,16 +226,16 @@ export default {
                     }
                 );
                 let result = dataEquipmentRepair.data.data;
-                for (let i = 0; i < result.length; i++) {
-                    result[i].no = i + 1;
-                    result[i].tanggal = moment(result[i].tanggalMasuk).format(
-                        "YYYY-MM-DD"
-                    );
-                    result[i].jam = moment(result[i].tanggalMasuk).format("HH:mm:ss");
-                    result[i].tanggalMasuk = moment(result[i].tanggalMasuk).format("YYYY-MM-DD HH:mm:ss");
-                    result[i].tanggalSelesai = moment(result[i].tanggalSelesai).format("YYYY-MM-DD HH:mm:ss");
-                    result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss");
-                }
+                // for (let i = 0; i < result.length; i++) {
+                //     result[i].no = i + 1;
+                //     result[i].tanggal = moment(result[i].tanggalMasuk).format(
+                //         "YYYY-MM-DD"
+                //     );
+                //     result[i].jam = moment(result[i].tanggalMasuk).format("HH:mm:ss");
+                //     result[i].tanggalMasuk = moment(result[i].tanggalMasuk).format("YYYY-MM-DD HH:mm:ss");
+                //     result[i].tanggalSelesai = moment(result[i].tanggalSelesai).format("YYYY-MM-DD HH:mm:ss");
+                //     result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss");
+                // }
                 this.itemEquipmentRepair = result;
                 this.totalPages = dataEquipmentRepair.data.totalPages
 				this.loading = false;

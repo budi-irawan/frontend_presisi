@@ -8,7 +8,7 @@
 				<div class="container-fluid pt-3">
 					<div class="row">
 						<div class="col">
-							<div class="card shadow-lg">
+							<div class="card">
 								<div class="card-header">
 									<h3 class="card-title">
 									<i class="fas fa-solid fa-gas-pump mr-3"></i>
@@ -52,7 +52,7 @@
 								</div>
 							</div>
 
-							<div class="card shadow-lg">
+							<div class="card">
 								<div class="card-body table-responsive p-0">
 									<table class="table table-hover table-striped text-nowrap" v-if="!loading">
 										<thead>
@@ -70,7 +70,6 @@
 												<th class="align-middle" scope="col">Foto Km</th>
 												<th class="align-middle" scope="col">Hm</th>
 												<th class="align-middle" scope="col">Foto Hm</th>
-												<th class="align-middle" scope="col"></th>
 											</tr>
 										</thead>
 										
@@ -89,9 +88,7 @@
 												<td><img :src="path+'/uploads/'+itemFuel.fotoHourMeter" alt="" width="100"></td>
 												<td>{{ itemFuel.kiloMeter }}</td>
 												<td><img :src="path+'/uploads/'+itemFuel.fotoKiloMeter" alt="" width="100"></td>
-												<td class="tombol">
-													
-												</td>
+												
 											</tr>
 										</tbody>
 									</table>
@@ -102,15 +99,19 @@
 									</div>
 								</div>
 
-								<div class="row p-3">
+								<div class="row p-2">
 									<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 									<div class="col-sm-1">
 										<select class="form-control select2" @change="handleLimit($event)">
 											<option>Pilih</option>
-											<option value="5">5</option>
 											<option value="10">10</option>
+											<option value="20">20</option>
+											<option value="30">30</option>
 										</select>
 									</div>
+									
+								</div>
+								<div class="row p-2">
 									<div class="col">
 										<ul class="pagination pagination-sm m-0 float-right">
 											<li class="page-item"><button @click="changePages(page - 1)" :disabled="page <= 1" class="page-link">Sebelumnya</button></li>
@@ -190,12 +191,12 @@ export default {
 					}
 				);
 				let result = response.data.data;
-				for (let i = 0; i < result.length; i++) {
-					result[i].no = i + 1
-					result[i].tanggalPengisian = moment(result[i].tanggalPengisian).format("YYYY-MM-DD HH:mm:ss")
-					// result[i].jam = moment(result[i].tanggalPengisian).format("HH:mm:ss")
-					result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss")
-				}
+				// for (let i = 0; i < result.length; i++) {
+				// 	result[i].no = i + 1
+				// 	result[i].tanggalPengisian = moment(result[i].tanggalPengisian).format("YYYY-MM-DD HH:mm:ss")
+				// 	result[i].jam = moment(result[i].tanggalPengisian).format("HH:mm:ss")
+				// 	result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss")
+				// }
 				// this.itemFuelRefill = result
 				
 				this.totalPages = response.data.totalPages
