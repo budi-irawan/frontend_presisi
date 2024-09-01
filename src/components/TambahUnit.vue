@@ -107,11 +107,19 @@
 						</div>
 
 						<div class="row mb-3">
-							<label for="proyek" class="col-sm-3 col-form-label">Proyek<span class="text-danger"> *</span></label>
+							<label for="proyekId" class="col-sm-3 col-form-label">Proyek<span class="text-danger"> *</span></label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="proyek" v-model="itemUnit.proyek" :class="{'is-invalid': validationStatus($v.itemUnit.proyek)}" />
-								<div v-if="!$v.itemUnit.proyek.required"
-									class="invalid-feedback">
+								<select class="form-control select2" aria-label="Default select example"
+									v-model="itemUnit.proyekId" :class="{
+										'is-invalid': validationStatus(
+											$v.itemUnit.proyekId
+										),
+									}">
+									<option v-for="dp in dataProyek" :key="dp.id" :value="dp.id">
+										{{ dp.namaProyek }}
+									</option>
+								</select>
+								<div v-if="!$v.itemUnit.proyekId.required" class="invalid-feedback">
 									Proyek harus diisi
 								</div>
 							</div>
@@ -460,9 +468,9 @@ export default {
 				typeId: '',
 				merkId: '',
 				lokasiId: '',
+				proyekId: '',
 				nomorPolisi: '',
 				serialNumber: '',
-				proyek: '',
 				tahunAlat: '',
 				equipment: '',
 				tahunAlat: '',
@@ -473,6 +481,7 @@ export default {
             dataType: [],
             dataMerk: [],
             dataLokasi: [],
+            dataProyek: [],
 			page: 1,
 			limit: 10,
 			totalPages: 1,
@@ -489,7 +498,7 @@ export default {
 			typeId: { required },
 			merkId: { required },
 			lokasiId: { required },
-			proyek: { required },
+			proyekId: { required },
 			tahunAlat: { required },
 		}, 
 	},
@@ -507,6 +516,7 @@ export default {
 		this.getAllType();
 		this.getAllMerk();
 		this.getAllLokasi();
+		this.getAllProyek();
 		this.getAllUnit();
 		// this.dataUnit = await this.getAllUnit();
 		// this.loading = false
@@ -597,6 +607,23 @@ export default {
 			}
 		},
 
+		async getAllProyek() {
+			let dataToken = localStorage.getItem('token')
+			try {
+				const response = await axios.get(
+					`${ipBackend}/proyek`, {
+					headers: {
+						token: dataToken
+					}
+				}
+				);
+				let result = response.data.data;
+				this.dataProyek = result
+			} catch (error) {
+				console.log(error);
+			}
+		},
+
 		toggleComponentTambahUnit() {
 			this.showComponentTambahUnit = !this.showComponentTambahUnit;
 			this.getAllJenisAlat();
@@ -634,7 +661,7 @@ export default {
 					this.itemUnit.merkId = null
 					this.itemUnit.lokasiId = null
 					this.itemUnit.serialNumber = null
-					this.itemUnit.proyek = null
+					this.itemUnit.proyekId = null
 					this.itemUnit.tahunAlat = null
 					this.itemUnit.equipment = null
 					this.$nextTick(() => { this.$v.$reset() })
@@ -731,7 +758,7 @@ export default {
 			});
 		},
 
-		toggleComponentEditUnit(unitId, nomorLambung, statusUnit, jenisAlatId, typeId, merkId, lokasiId, proyek, serialNumber, nomorPolisi, equipment, tahunAlat) {
+		toggleComponentEditUnit(unitId, nomorLambung, statusUnit, jenisAlatId, typeId, merkId, lokasiId, proyekId, serialNumber, nomorPolisi, equipment, tahunAlat) {
 			this.getAllJenisAlat()
 			this.showComponentEditUnit = !this.showComponentEditUnit;
 			this.itemUnit.nomorLambung = nomorLambung
@@ -741,7 +768,7 @@ export default {
 			this.itemUnit.typeId = typeId
 			this.itemUnit.merkId = merkId
 			this.itemUnit.lokasiId = lokasiId
-			this.itemUnit.proyek = proyek
+			this.itemUnit.proyekId = proyekId
 			this.itemUnit.serialNumber = serialNumber
 			this.itemUnit.nomorPolisi = nomorPolisi
 			this.itemUnit.equipment = equipment
@@ -763,7 +790,7 @@ export default {
 					typeId: this.itemUnit.typeId,
 					merkId: this.itemUnit.merkId,
 					lokasiId: this.itemUnit.lokasiId,
-					proyek: this.itemUnit.proyek,
+					proyekId: this.itemUnit.proyekId,
 					serialNumber: this.itemUnit.serialNumber,
 					nomorPolisi: this.itemUnit.nomorPolisi,
 					equipment: this.itemUnit.equipment,
