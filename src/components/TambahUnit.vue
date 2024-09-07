@@ -416,14 +416,14 @@
 			</div>
 		</div>
 		
-		<div class="row mt-2">
+		<div class="row mt-2 ml-2">
 			<label for="pagination" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 			<div class="col-sm-1 mb-2">
 				<select class="form-control select2" @change="handleLimit($event)">
 					<option>Pilih</option>
 					<option value="10">10</option>
-					<option value="20">20</option>
-					<option value="30">30</option>
+					<option value="25">25</option>
+					<option value="50">50</option>
 				</select>
 			</div>
 		</div>
@@ -518,8 +518,6 @@ export default {
 		this.getAllLokasi();
 		this.getAllProyek();
 		this.getAllUnit();
-		// this.dataUnit = await this.getAllUnit();
-		// this.loading = false
 	},
 
 	methods: {
@@ -697,13 +695,9 @@ export default {
 				);
 				
 				let result = response.data.data;
-				for (let i = 0; i < result.length; i++) {
-					result[i].no = i + 1
-				}
 				this.dataUnit = result
 				this.totalPages = response.data.totalPages
 				this.loading = false 
-				// return result;
 			} catch (error) {
 				console.log(error);
 			} finally {

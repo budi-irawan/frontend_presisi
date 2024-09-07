@@ -134,14 +134,14 @@
 									</div>
                                 </div>
 
-                                <div class="row p-2">
+                                <div class="row p-2 ml-2">
 									<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 									<div class="col-sm-1">
 										<select class="form-control select2" @change="handleLimit($event)">
 											<option>Pilih</option>
 											<option value="10">10</option>
-                                            <option value="20">20</option>
-                                            <option value="30">30</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
 										</select>
 									</div>
 								</div>
@@ -226,16 +226,6 @@ export default {
                     }
                 );
                 let result = dataEquipmentRepair.data.data;
-                // for (let i = 0; i < result.length; i++) {
-                //     result[i].no = i + 1;
-                //     result[i].tanggal = moment(result[i].tanggalMasuk).format(
-                //         "YYYY-MM-DD"
-                //     );
-                //     result[i].jam = moment(result[i].tanggalMasuk).format("HH:mm:ss");
-                //     result[i].tanggalMasuk = moment(result[i].tanggalMasuk).format("YYYY-MM-DD HH:mm:ss");
-                //     result[i].tanggalSelesai = moment(result[i].tanggalSelesai).format("YYYY-MM-DD HH:mm:ss");
-                //     result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss");
-                // }
                 this.itemEquipmentRepair = result;
                 this.totalPages = dataEquipmentRepair.data.totalPages
 				this.loading = false;

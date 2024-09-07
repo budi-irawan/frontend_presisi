@@ -99,17 +99,16 @@
 									</div>
 								</div>
 
-								<div class="row p-2">
+								<div class="row p-2 ml-2">
 									<label for="agama" class="col-sm-3 col-form-label font-weight-normal">Jumlah item per halaman</label>
 									<div class="col-sm-1">
 										<select class="form-control select2" @change="handleLimit($event)">
 											<option>Pilih</option>
 											<option value="10">10</option>
-											<option value="20">20</option>
-											<option value="30">30</option>
+											<option value="25">25</option>
+											<option value="50">50</option>
 										</select>
 									</div>
-									
 								</div>
 								<div class="row p-2">
 									<div class="col">
@@ -165,16 +164,17 @@ export default {
 		// this.getAllFuelRefill();
 	},
 
-	async created() {
-		this.itemFuelRefill = await this.getAllFuelRefill();
-		this.loading = false 
+	created() {
+		// this.itemFuelRefill = await this.getAllFuelRefill();
+		// this.loading = false 
+		this.getAllFuelRefill();
 	},
 
 	methods: {
 		async getAllFuelRefill() {
 			try {
-				let dataToken = localStorage.getItem('token')
 				this.loading = true;
+				let dataToken = localStorage.getItem('token')
 				let timestamp = new Date().getTime()
 				const response = await axios.get(
 						`${ipBackend}/fuel-refill`, {
@@ -191,17 +191,9 @@ export default {
 					}
 				);
 				let result = response.data.data;
-				// for (let i = 0; i < result.length; i++) {
-				// 	result[i].no = i + 1
-				// 	result[i].tanggalPengisian = moment(result[i].tanggalPengisian).format("YYYY-MM-DD HH:mm:ss")
-				// 	result[i].jam = moment(result[i].tanggalPengisian).format("HH:mm:ss")
-				// 	result[i].tanggalSinkronisasi = moment(result[i].tanggalSinkronisasi).format("YYYY-MM-DD HH:mm:ss")
-				// }
-				// this.itemFuelRefill = result
-				
+				this.itemFuelRefill = result
 				this.totalPages = response.data.totalPages
 				this.loading = false;
-				return result;
 			} catch (error) {
 				console.log(error);
 			} finally {
