@@ -366,7 +366,7 @@
 						<th class="align-middle" scope="col">Serial Number</th>
 						<th class="align-middle" scope="col">Nomor Polisi</th>
 						<th class="align-middle" scope="col">Equipment</th>
-						<th class="align-middle" scope="col">Lokasi</th>
+						<!-- <th class="align-middle" scope="col">Lokasi</th> -->
 						<th class="align-middle" scope="col">Proyek</th>
 						<th class="align-middle" scope="col">Tahun Alat</th>
 						<!-- <th class="align-middle" scope="col">Status Unit</th> -->
@@ -383,7 +383,7 @@
 						<td>{{ du.serialNumber }}</td>
 						<td>{{ du.nomorPolisi }}</td>
 						<td>{{ du.equipment }}</td>
-						<td>{{ du.namaLokasi }}</td>
+						<!-- <td>{{ du.namaLokasi }}</td> -->
 						<td>{{ du.namaProyek }}</td>
 						<td>{{ du.tahunAlat }}</td>
 						<!-- <td>

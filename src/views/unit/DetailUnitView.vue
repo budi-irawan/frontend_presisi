@@ -89,14 +89,14 @@
                                                     <b>{{ itemUnit.equipment }}</b>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
                                                     Lokasi : 
                                                 </div>
                                                 <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
                                                     <b>{{ itemUnit.namaLokasi }}</b>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- <div class="row">
                                                 Serial Number : <b class="text-wrap">{{ itemUnit.serialNumber }}</b>
                                             </div> -->
@@ -212,6 +212,12 @@
                                                                     <th class="align-middle" scope="col">
                                                                         Foto Km
                                                                     </th>
+                                                                    <th class="align-middle" scope="col">
+                                                                        Operator
+                                                                    </th>
+                                                                    <th class="align-middle" scope="col">
+                                                                        Lokasi
+                                                                    </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -242,6 +248,8 @@
                                                                             itemFuel.fotoKiloMeter
                                                                             " alt="" width="100" />
                                                                     </td>
+                                                                    <td>{{ itemFuel.operator }}</td>
+                                                                    <td>{{ itemFuel.lokasi }}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -527,9 +535,11 @@ export default {
                     result[i].tanggalPengisian = moment(
                         result[i].tanggalPengisian
                     ).format("YYYY-MM-DD HH:mm:ss");
+                    result[i].tanggalSinkronisasi = moment(
+                        result[i].tanggalSinkronisasi
+                    ).format("YYYY-MM-DD HH:mm:ss");
                 }
                 this.itemFuelRefill = result;
-                console.log(result);
             } catch (error) {
                 console.log(error);
             }

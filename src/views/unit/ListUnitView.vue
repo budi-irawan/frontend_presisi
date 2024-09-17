@@ -44,12 +44,12 @@
 														role="tab" aria-controls="custom-content-below-merk"
 														aria-selected="false" style="font-weight: 600">Merk</a>
 												</li>
-												<li class="nav-item">
+												<!-- <li class="nav-item">
 													<a class="nav-link text-secondary" id="custom-content-below-lokasi-tab"
 														data-toggle="pill" href="#custom-content-below-lokasi"
 														role="tab" aria-controls="custom-content-below-lokasi"
 														aria-selected="false" style="font-weight: 600">Lokasi</a>
-												</li>
+												</li> -->
 												<li class="nav-item">
 													<a class="nav-link text-secondary" id="custom-content-below-proyek-tab"
 														data-toggle="pill" href="#custom-content-below-proyek"
@@ -70,9 +70,9 @@
 												<div class="tab-pane fade" id="custom-content-below-merk" role="tabpanel" aria-labelledby="custom-content-below-merk-tab">
 													<tambah-merk />
 												</div>
-												<div class="tab-pane fade" id="custom-content-below-lokasi" role="tabpanel" aria-labelledby="custom-content-below-lokasi-tab">
+												<!-- <div class="tab-pane fade" id="custom-content-below-lokasi" role="tabpanel" aria-labelledby="custom-content-below-lokasi-tab">
 													<tambah-lokasi />
-												</div>
+												</div> -->
 												<div class="tab-pane fade" id="custom-content-below-proyek" role="tabpanel" aria-labelledby="custom-content-below-proyek-tab">
 													<tambah-proyek />
 												</div>

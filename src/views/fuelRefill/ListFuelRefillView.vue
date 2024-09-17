@@ -70,6 +70,8 @@
 												<th class="align-middle" scope="col">Foto Km</th>
 												<th class="align-middle" scope="col">Hm</th>
 												<th class="align-middle" scope="col">Foto Hm</th>
+												<th class="align-middle" scope="col">Operator</th>
+												<th class="align-middle" scope="col">Lokasi</th>
 											</tr>
 										</thead>
 										
@@ -88,7 +90,8 @@
 												<td><img :src="path+'/uploads/'+itemFuel.fotoHourMeter" alt="" width="100"></td>
 												<td>{{ itemFuel.kiloMeter }}</td>
 												<td><img :src="path+'/uploads/'+itemFuel.fotoKiloMeter" alt="" width="100"></td>
-												
+												<td>{{ itemFuel.operator }}</td>
+												<td>{{ itemFuel.lokasi }}</td>
 											</tr>
 										</tbody>
 									</table>
