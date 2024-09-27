@@ -12,7 +12,7 @@ import FormTambahUserFuelman from '@/views/user/FormTambahUserFuelman.vue'
 import ListDivisiView from '@/views/divisi/ListDivisiView.vue'
 import FormTambahDivisiView from '@/views/divisi/FormTambahDivisiView.vue'
 import FormEditDivisiView from '@/views/divisi/FormEditDivisiView.vue'
-import ListKomponenView from '@/views/komponen/ListKomponenView.vue'
+import ListPartView from '@/views/part/ListPartView.vue'
 import FormTambahKomponenView from '@/views/komponen/FormTambahKomponenView.vue'
 import FormEditKomponenView from '@/views/komponen/FormEditKomponenView.vue'
 import ListPelumasView from '@/views/pelumas/ListPelumasView.vue'
@@ -261,6 +261,14 @@ const routes = [
 		path: '/jenis-alat/edit',
 		name: 'edit-jenis-alat',
 		component: FormEditJenisAlatView,
+		meta: {
+			requiresAuth: true
+		}
+	},
+	{
+		path: '/part',
+		name: 'part',
+		component: ListPartView,
 		meta: {
 			requiresAuth: true
 		}

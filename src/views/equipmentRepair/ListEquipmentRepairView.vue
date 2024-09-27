@@ -7,7 +7,7 @@
             <section class="content">
                 <div class="container-fluid pt-3">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
 									<h3 class="card-title">
@@ -51,44 +51,36 @@
                             </div>
 
                             <div class="card">
-                                <div class="card-body table-responsive p-0">
-                                    <table class="table table-hover table-striped" v-if="!loading">
+                                <div class="card-body">
+                                    <div class="table-responsive" v-if="!loading">
+                                        <table class="table table-hover table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th class="align-middle" scope="col">
+                                                <th rowspan="2" class="align-middle" scope="col">
                                                     No
                                                 </th>
-                                                <th class="align-middle" scope="col">Tanggal Masuk</th>
-                                                <!-- <th class="align-middle" scope="col">Jam</th> -->
-                                                <th class="align-middle" scope="col">Tanggal Selesai</th>
-                                                <th class="align-middle" scope="col">Tanggal Sinkronisasi</th>
-                                                <th class="align-middle" scope="col">Unit</th>
-                                                <th class="align-middle" scope="col">Km</th>
-                                                <th class="align-middle" scope="col">Foto Km</th>
-                                                <th class="align-middle" scope="col">Hm</th>
-                                                <th class="align-middle" scope="col">Foto Hm</th>
-                                                <th class="align-middle" scope="col">User</th>
-                                                <th class="align-middle" scope="col">Lokasi</th>
-                                                <th class="align-middle" scope="col">Problem</th>
-                                                <th class="align-middle" scope="col">Solusi</th>
-                                                <th class="align-middle" scope="col">Status</th>
-                                                <th class="align-middle" scope="col">Keterangan Pending</th>
-                                                <th class="align-middle" scope="col">Mekanik</th>
-                                                <!-- <th class="align-middle" scope="col">Komponen</th>
-                                                <th class="align-middle" scope="col">Pelumas</th> -->
+                                                <th rowspan="2" class="align-middle" scope="col">Tanggal Masuk</th>
+                                                <th rowspan="2" class="align-middle" scope="col">Tanggal Sinkronisasi</th>
+                                                <th rowspan="2" class="align-middle" scope="col">Unit</th>
+                                                <th rowspan="2" class="align-middle" scope="col">Km</th>
+                                                <th rowspan="2" class="align-middle" scope="col">Foto Km</th>
+                                                <th rowspan="2" class="align-middle" scope="col">Hm</th>
+                                                <th rowspan="2" class="align-middle" scope="col">Foto Hm</th>
+                                                <th rowspan="2" class="align-middle" scope="col">Mekanik</th>
+                                                <th colspan="4" class="align-middle" scope="col">Backlog</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="align-middle" scope="col">Part Number</th>
+                                                <th class="align-middle" scope="col">Part Name</th>
+                                                <th class="align-middle" scope="col">Quantity</th>
+                                                <th class="align-middle" scope="col">Foto Kerusakan</th>
                                             </tr>
                                         </thead>
-                                        <!-- <div v-if="loading" class="row justify-content-center">
-											<div class="col">
-												<img :src="loadingGif" alt="Loading..." />
-											</div>
-										</div> -->
+                                        
                                         <tbody>
                                             <tr v-for="(item, index) in itemEquipmentRepair" :key="item.equipmentRepairId">
                                                 <td>{{ (page - 1) * limit + index + 1 }}</td>
                                                 <td>{{ item.tanggalMasuk }}</td>
-                                                <!-- <td>{{ item.jam }}</td> -->
-                                                <td>{{ item.tanggalSelesai }}</td>
                                                 <td>{{ item.tanggalSinkronisasi }}</td>
                                                 <td>{{ item.namaMerk }}-{{ item.namaType }}-{{ item.nomorLambung }}</td>
                                                 <td>{{ item.hourMeter }}</td>
@@ -101,31 +93,43 @@
                                                     <img :src="path + '/uploads/' + item.fotoKiloMeter" alt=""
                                                         width="100" />
                                                 </td>
-                                                <td>{{ item.username }}</td>
-                                                <td>{{ item.lokasi }}</td>
-                                                <td class="text-wrap">{{ item.problem }}</td>
+                                                <td>{{ item.namaManpower }}</td>
                                                 <td class="isi-data-kolom">
                                                     <ul v-for="itemMekanik of item.dataMekanik"
-                                                        :key="itemMekanik.karyawanId">
+                                                        :key="itemMekanik.backLogId">
                                                         <li>
-                                                            {{ itemMekanik.deskripsiTugas }}
+                                                            {{ itemMekanik.nomorPartNumber }}  
                                                         </li>
                                                     </ul>
                                                 </td>
-                                                <td v-if="item.statusEquipment == 1"><span class="badge badge-success">RFU</span></td>
-                                                <td v-if="item.statusEquipment == 2"><span class="badge badge-info">PENDING</span></td>
-                                                <td>{{ item.keteranganPending }}</td>
                                                 <td class="isi-data-kolom">
                                                     <ul v-for="itemMekanik of item.dataMekanik"
-                                                        :key="itemMekanik.karyawanId">
+                                                        :key="itemMekanik.backLogId">
                                                         <li>
-                                                            {{ itemMekanik.namaManpower }}
+                                                            {{ itemMekanik.namaPartName }}
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="isi-data-kolom">
+                                                    <ul v-for="itemMekanik of item.dataMekanik"
+                                                        :key="itemMekanik.backLogId">
+                                                        <li>
+                                                            {{ itemMekanik.jumlahPart }}
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                                <td class="isi-data-kolom">
+                                                    <ul v-for="itemMekanik of item.dataMekanik"
+                                                        :key="itemMekanik.backLogId">
+                                                        <li>
+                                                            <img :src="path + '/uploads/' + itemMekanik.fotoKerusakan" alt="" width="100" /> 
                                                         </li>
                                                     </ul>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    </div>
 
                                     <div v-else class="row muser">
 										<div class="col text-center">

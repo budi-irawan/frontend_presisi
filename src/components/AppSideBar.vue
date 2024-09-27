@@ -38,18 +38,12 @@
                             <p>Fuelman</p>
                         </router-link>
                     </li>
-                    <!-- <li class="nav-item">
-                        <router-link to="/komponen" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-toolbox"></i>
-                            <p>Komponen</p>
+                    <li class="nav-item">
+                        <router-link to="/part" class="nav-link">
+                            <i class="nav-icon fas fa-solid fa-cubes"></i>
+                            <p>Part</p>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/pelumas" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-vial"></i>
-                            <p>Pelumas</p>
-                        </router-link>
-                    </li> -->
                     <li class="nav-item">
                         <router-link to="/unit" class="nav-link">
                             <i class="nav-icon fas fa-solid fa-layer-group"></i>
